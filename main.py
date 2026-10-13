@@ -2,6 +2,7 @@ from application_manager import add_application
 from application_manager import view_applications
 from application_manager import search_applications
 from application_manager import update_application_status
+# maximka
 
 applications = [{"company":"Walmart", "position":"Salesfloor AT", "date":"2025-03-14", "status":"Applied"}, {"company":"TikiTiki", "position":"Busboy", "date":"2023-03-12", "status":"Applied"}, {"company":"Amazon", "position":"TL", "date":"2023-03-12", "status":"Applied"}]
 # applications = []
