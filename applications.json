@@ -1,0 +1,32 @@
+[
+    {
+        "company": "Walmart",
+        "position": "Salesfloor AT",
+        "date": "2025-03-14",
+        "status": "Interview"
+    },
+    {
+        "company": "TikiTiki",
+        "position": "Busboy",
+        "date": "2023-03-12",
+        "status": "Interview"
+    },
+    {
+        "company": "Walmart",
+        "position": "TL",
+        "date": "2023-03-12",
+        "status": "Applied"
+    },
+    {
+        "company": "Amazon",
+        "position": "Delivery",
+        "date": "2023-03-12",
+        "status": "Rejected"
+    },
+    {
+        "company": "Apple",
+        "position": "Manager",
+        "date": "2023-03-12",
+        "status": "Offer"
+    }
+]
