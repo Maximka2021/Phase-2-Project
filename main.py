@@ -6,13 +6,8 @@ from application_manager import delete_application
 from application_manager import show_stats
 from storage import load_applications
 
-# maximka
-
-applications = load_applications()
-# applications = []
-
-
 def main():
+    applications = load_applications()
     while True:
         show_menu()
         try:

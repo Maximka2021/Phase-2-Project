@@ -1,6 +1,6 @@
-from storage import save_applications, load_applications
+from storage import save_applications
 
-def add_application(applictions):
+def add_application(applications):
     while True:
         input_company = input("Enter your company => ").strip()
         if not input_company:
@@ -21,7 +21,8 @@ def add_application(applictions):
             break
 
     user_info = {"company": input_company, "position":input_position, "date":input_date, "status":"Applied"}
-    save_applications(applictions.append(user_info))
+    applications.append(user_info)
+    save_applications(applications)
     print("Application was added successfully")
     
 
@@ -40,18 +41,18 @@ def view_applications(applications):
         
 def search_applications(applications):
     found = False
-    founded_applications = []
+    found_applications = []
     while True:
         search_input = input("Search (by company name) => ").lower().strip()
         
         if not search_input:
-            print("Search cannont be blank")
+            print("Search cannot be blank")
         else:
             break
     for application in applications:
         if search_input == application["company"].lower():
             found = True
-            founded_applications.append(application)
+            found_applications.append(application)
             print(f"{application['company']}")
             print(f"Position: {application['position']}")
             print(f"Date: {application['date']}")
@@ -61,17 +62,17 @@ def search_applications(applications):
     if not found:
         print("Nothing was found")
 
-    return found, founded_applications
+    return found, found_applications
 
 def update_application_status(applications):
     statuses = {"Applied", "Interview", "Rejected", "Offer"}
 
-    is_founded, founded_applications = search_applications(applications)
+    is_found, found_applications = search_applications(applications)
 
-    if not is_founded:
+    if not is_found:
         return
     
-    application_to_update = choose_application(founded_applications)
+    application_to_update = choose_application(found_applications)
 
     while True:
         new_status_input = input("Enter a new status (Applied, Interview, Rejected, Offer)").strip().title()
@@ -85,42 +86,40 @@ def update_application_status(applications):
     application_to_update["status"] = new_status_input
     print(application_to_update)
     save_applications(applications)
-    print("Status was updates succuessfully")
+    print("Status was updated successfully")
     
 
-def choose_application(founded_applications):
+def choose_application(found_applications):
 
-    if len(founded_applications) == 1:
-        application_to_update = founded_applications[0]
+    if len(found_applications) == 1:
+        application_to_update = found_applications[0]
         return application_to_update
 
-    for index, application in enumerate(founded_applications, start = 1):
+    for index, application in enumerate(found_applications, start = 1):
         print(f"{index}. {application}")
 
     while True:
         try:
             user_input = int(input("Choose application by entering a corresponding number => "))
-            if user_input < 1 or user_input > len(founded_applications):
+            if user_input < 1 or user_input > len(found_applications):
                 print("No such number")
                 continue
-            application_to_update = founded_applications[user_input-1]
+            application_to_update = found_applications[user_input-1]
         except ValueError:
             print("Invalid Input")
-        except IndexError:
-            print("No such number")
         else:
             return application_to_update
         
 
 def delete_application(applications):
-   is_found, founded_applications = search_applications(applications)
+   is_found, found_applications = search_applications(applications)
 
    if not is_found:
        return
    
-   application_to_delete = choose_application(founded_applications)
-   
-   save_applications(applications.remove(application_to_delete))
+   application_to_delete = choose_application(found_applications)
+   applications.remove(application_to_delete)
+   save_applications(applications)
 
 def show_stats(applications):
     total = len(applications)
